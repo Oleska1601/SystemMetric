@@ -1,0 +1,17 @@
+app:
+  name: "SystemMetric"
+  version: "1.0.0"
+
+http:
+  port: "8080"
+
+logger:
+  level: "info"
+
+web:
+  path: "web"
+
+postgres:
+  pool_max: 2
+  pg_url: "postgres://postgres:16012006@localhost:5432/SystemMetricDB?sslmode=disable"
+

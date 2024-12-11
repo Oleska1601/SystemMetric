@@ -1,0 +1,740 @@
+basePath: /
+definitions:
+  entity.Alert:
+    properties:
+      alert_id:
+        example: 1
+        type: integer
+      alert_message:
+        example: alert message
+        type: string
+      metric_id:
+        example: 1
+        type: integer
+      severity:
+        example: 1
+        type: integer
+    type: object
+  entity.AlertRecipient:
+    properties:
+      alert_id:
+        example: 1
+        type: integer
+      alert_recipient_id:
+        example: 1
+        type: integer
+      user_id:
+        example: 1
+        type: integer
+    type: object
+  entity.Metric:
+    properties:
+      metric_id:
+        example: 1
+        type: integer
+      metric_name:
+        example: metric name
+        type: string
+      metric_type_id:
+        example: 1
+        type: integer
+      timestamp:
+        example: 1993-12-01 10:03:44.000 +0300
+        type: string
+      value:
+        example: 0.5
+        type: number
+    type: object
+  entity.MetricType:
+    properties:
+      type_id:
+        example: 1
+        type: integer
+      type_name:
+        example: type name
+        type: string
+    type: object
+  entity.Role:
+    properties:
+      role_id:
+        example: 1
+        type: integer
+      role_name:
+        example: role name
+        type: string
+    type: object
+  entity.User:
+    properties:
+      email:
+        example: username@email.com
+        type: string
+      user_id:
+        example: 1
+        type: integer
+      username:
+        example: username
+        type: string
+    type: object
+host: localhost:8080
+info:
+  contact: {}
+  description: This is a server for work with metrics
+  termsOfService: http://swagger.io/terms/
+  title: SystemMetric API
+  version: "1.0"
+paths:
+  /api/deleteAlert:
+    delete:
+      consumes:
+      - application/json
+      description: delete alert
+      parameters:
+      - description: alertID for deleting alert
+        in: header
+        name: alertID
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: delete alert is successful
+          schema:
+            type: string
+        "500":
+          description: Internal server error
+          schema:
+            type: string
+      summary: delete page
+      tags:
+      - API
+  /api/deleteAlertRecipient:
+    delete:
+      consumes:
+      - application/json
+      description: delete alert recipient with alertRecipientID
+      parameters:
+      - description: alertRecipientID for deleting alert recipient
+        in: header
+        name: alertRecipientID
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: delete alert recipient is successful
+          schema:
+            type: string
+        "500":
+          description: Internal server error
+          schema:
+            type: string
+      summary: delete page
+      tags:
+      - API
+  /api/deleteMetric:
+    delete:
+      consumes:
+      - application/json
+      description: delete metric with metricID
+      parameters:
+      - description: metricID for deleting metric
+        in: header
+        name: metricID
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: delete metric is successful
+          schema:
+            type: string
+        "500":
+          description: Internal server error
+          schema:
+            type: string
+      summary: delete page
+      tags:
+      - API
+  /api/deleteMetricType:
+    delete:
+      consumes:
+      - application/json
+      description: delete metric type with metricTypeID
+      parameters:
+      - description: metricTypeID for deleting metric type
+        in: header
+        name: metricTypeID
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: delete metric type is successful
+          schema:
+            type: string
+        "500":
+          description: Internal server error
+          schema:
+            type: string
+      summary: delete page
+      tags:
+      - API
+  /api/deleteRole:
+    delete:
+      consumes:
+      - application/json
+      description: delete role with roleID
+      parameters:
+      - description: roleID for deleting role
+        in: header
+        name: roleID
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: delete role is successful
+          schema:
+            type: string
+        "500":
+          description: Internal server error
+          schema:
+            type: string
+      summary: delete page
+      tags:
+      - API
+  /api/deleteUser:
+    delete:
+      consumes:
+      - application/json
+      description: delete user with userID
+      parameters:
+      - description: userID for deleting user
+        in: header
+        name: userID
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: delete user is successful
+          schema:
+            type: string
+        "500":
+          description: Internal server error
+          schema:
+            type: string
+      summary: delete page
+      tags:
+      - API
+  /api/getAlert:
+    get:
+      consumes:
+      - application/json
+      description: get alert with alertID
+      parameters:
+      - description: alertID for getting alert
+        in: header
+        name: alertID
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Get alert is successful
+          schema:
+            type: string
+        "500":
+          description: Internal server error
+          schema:
+            type: string
+      summary: get page
+      tags:
+      - API
+  /api/getAlertRecipient:
+    get:
+      consumes:
+      - application/json
+      description: get alert recipient with alertRecipientID
+      parameters:
+      - description: alertRecipientID for getting alert recipient
+        in: header
+        name: alertRecipientID
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Get alert recipient is successful
+          schema:
+            type: string
+        "500":
+          description: Internal server error
+          schema:
+            type: string
+      summary: get page
+      tags:
+      - API
+  /api/getAlertRecipients:
+    get:
+      consumes:
+      - application/json
+      description: get alert recipients
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Get alert recipients is successful
+          schema:
+            type: string
+        "500":
+          description: Internal server error
+          schema:
+            type: string
+      summary: get page
+      tags:
+      - API
+  /api/getAlerts:
+    get:
+      consumes:
+      - application/json
+      description: get alerts
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Get alerts is successful
+          schema:
+            type: string
+        "500":
+          description: Internal server error
+          schema:
+            type: string
+      summary: get page
+      tags:
+      - API
+  /api/getMetric:
+    get:
+      consumes:
+      - application/json
+      description: get metric with metricID
+      parameters:
+      - description: metricID for getting metric
+        in: header
+        name: metricID
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Get metric is successful
+          schema:
+            type: string
+        "500":
+          description: Internal server error
+          schema:
+            type: string
+      summary: get page
+      tags:
+      - API
+  /api/getMetricType:
+    get:
+      consumes:
+      - application/json
+      description: get metricType with metricTypeID
+      parameters:
+      - description: metricTypeID for getting metricType
+        in: header
+        name: metricTypeID
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Get metricType is successful
+          schema:
+            type: string
+        "500":
+          description: Internal server error
+          schema:
+            type: string
+      summary: get page
+      tags:
+      - API
+  /api/getMetricTypes:
+    get:
+      consumes:
+      - application/json
+      description: get metric types
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Get metric types is successful
+          schema:
+            type: string
+        "500":
+          description: Internal server error
+          schema:
+            type: string
+      summary: get page
+      tags:
+      - API
+  /api/getMetrics:
+    get:
+      consumes:
+      - application/json
+      description: get metrics
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Get metrics is successful
+          schema:
+            type: string
+        "500":
+          description: Internal server error
+          schema:
+            type: string
+      summary: get page
+      tags:
+      - API
+  /api/getRole:
+    get:
+      consumes:
+      - application/json
+      description: get role with roleID
+      parameters:
+      - description: roleID for getting role
+        in: header
+        name: roleID
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Get role is successful
+          schema:
+            type: string
+        "500":
+          description: Internal server error
+          schema:
+            type: string
+      summary: get page
+      tags:
+      - API
+  /api/getRoles:
+    get:
+      consumes:
+      - application/json
+      description: get roles
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Get roles is successful
+          schema:
+            type: string
+        "500":
+          description: Internal server error
+          schema:
+            type: string
+      summary: get page
+      tags:
+      - API
+  /api/getUser:
+    get:
+      consumes:
+      - application/json
+      description: get user with userID
+      parameters:
+      - description: userID for getting user
+        in: header
+        name: userID
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Get user is successful
+          schema:
+            type: string
+        "400":
+          description: Bad request
+          schema:
+            type: string
+        "500":
+          description: Internal server error
+          schema:
+            type: string
+      summary: get page
+      tags:
+      - API
+  /api/getUsers:
+    get:
+      consumes:
+      - application/json
+      description: get users
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Get users is successful
+          schema:
+            type: string
+        "500":
+          description: Internal server error
+          schema:
+            type: string
+      summary: get page
+      tags:
+      - API
+  /api/insertAlert:
+    post:
+      consumes:
+      - application/json
+      description: insert alert
+      parameters:
+      - description: alert_message, severity, metric_id
+        in: body
+        name: alert
+        required: true
+        schema:
+          $ref: '#/definitions/entity.Alert'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Insert alert is successful
+          schema:
+            type: string
+        "400":
+          description: Bad request
+          schema:
+            type: string
+        "500":
+          description: Internal server error
+          schema:
+            type: string
+      summary: insert page
+      tags:
+      - API
+  /api/insertAlertRecipient:
+    post:
+      consumes:
+      - application/json
+      description: insert alert recipient
+      parameters:
+      - description: alert_id, user_id
+        in: body
+        name: alert-recipient
+        required: true
+        schema:
+          $ref: '#/definitions/entity.AlertRecipient'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Insert alert recipient is successful
+          schema:
+            type: string
+        "400":
+          description: Bad request
+          schema:
+            type: string
+        "500":
+          description: Internal server error
+          schema:
+            type: string
+      summary: insert page
+      tags:
+      - API
+  /api/insertMetric:
+    post:
+      consumes:
+      - application/json
+      description: insert metric
+      parameters:
+      - description: metric_name, timestamp, value, metric_type_id
+        in: body
+        name: metric
+        required: true
+        schema:
+          $ref: '#/definitions/entity.Metric'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Insert metric is successful
+          schema:
+            type: string
+        "400":
+          description: Bad request
+          schema:
+            type: string
+        "500":
+          description: Internal server error
+          schema:
+            type: string
+      summary: insert page
+      tags:
+      - API
+  /api/insertMetricType:
+    post:
+      consumes:
+      - application/json
+      description: insert metric type
+      parameters:
+      - description: type_name
+        in: body
+        name: metric_type
+        required: true
+        schema:
+          $ref: '#/definitions/entity.MetricType'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Insert metric type is successful
+          schema:
+            type: string
+        "400":
+          description: Bad request
+          schema:
+            type: string
+        "500":
+          description: Internal server error
+          schema:
+            type: string
+      summary: insert page
+      tags:
+      - API
+  /api/insertRole:
+    post:
+      consumes:
+      - application/json
+      description: insert role
+      parameters:
+      - description: role_name
+        in: body
+        name: role
+        required: true
+        schema:
+          $ref: '#/definitions/entity.Role'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Insert role is successful
+          schema:
+            type: string
+        "400":
+          description: Bad request
+          schema:
+            type: string
+        "500":
+          description: Internal server error
+          schema:
+            type: string
+      summary: insert page
+      tags:
+      - API
+  /api/insertUser:
+    post:
+      consumes:
+      - application/json
+      description: insert user
+      parameters:
+      - description: username, email
+        in: body
+        name: user
+        required: true
+        schema:
+          $ref: '#/definitions/entity.User'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Insert user is successful
+          schema:
+            type: string
+        "500":
+          description: Internal server error
+          schema:
+            type: string
+      summary: insert page
+      tags:
+      - API
+  /api/updateMetric:
+    put:
+      consumes:
+      - application/json
+      description: update value with metricID
+      parameters:
+      - description: metricID, value
+        in: body
+        name: metric
+        required: true
+        schema:
+          $ref: '#/definitions/entity.Metric'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Update metric is successful
+          schema:
+            type: string
+        "400":
+          description: Bad request
+          schema:
+            type: string
+        "500":
+          description: Internal server error
+          schema:
+            type: string
+      summary: update page
+      tags:
+      - API
+  /api/updateUser:
+    put:
+      consumes:
+      - application/json
+      description: update email with userID
+      parameters:
+      - description: userID, email
+        in: body
+        name: user
+        required: true
+        schema:
+          $ref: '#/definitions/entity.User'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Update user is successful
+          schema:
+            type: string
+        "400":
+          description: Bad request
+          schema:
+            type: string
+        "500":
+          description: Internal server error
+          schema:
+            type: string
+      summary: update page
+      tags:
+      - API
+swagger: "2.0"
