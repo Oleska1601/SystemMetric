@@ -10,311 +10,7 @@
     "host": "localhost:8080",
     "basePath": "/",
     "paths": {
-        "/api/deleteAlert": {
-            "delete": {
-                "description": "delete alert",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "API"
-                ],
-                "summary": "delete page",
-                "parameters": [
-                    {
-                        "type": "string",
-                        "description": "alertID for deleting alert",
-                        "name": "alertID",
-                        "in": "header",
-                        "required": true
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "delete alert is successful",
-                        "schema": {
-                            "type": "string"
-                        }
-                    },
-                    "500": {
-                        "description": "Internal server error",
-                        "schema": {
-                            "type": "string"
-                        }
-                    }
-                }
-            }
-        },
-        "/api/deleteAlertRecipient": {
-            "delete": {
-                "description": "delete alert recipient with alertRecipientID",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "API"
-                ],
-                "summary": "delete page",
-                "parameters": [
-                    {
-                        "type": "string",
-                        "description": "alertRecipientID for deleting alert recipient",
-                        "name": "alertRecipientID",
-                        "in": "header",
-                        "required": true
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "delete alert recipient is successful",
-                        "schema": {
-                            "type": "string"
-                        }
-                    },
-                    "500": {
-                        "description": "Internal server error",
-                        "schema": {
-                            "type": "string"
-                        }
-                    }
-                }
-            }
-        },
-        "/api/deleteMetric": {
-            "delete": {
-                "description": "delete metric with metricID",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "API"
-                ],
-                "summary": "delete page",
-                "parameters": [
-                    {
-                        "type": "string",
-                        "description": "metricID for deleting metric",
-                        "name": "metricID",
-                        "in": "header",
-                        "required": true
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "delete metric is successful",
-                        "schema": {
-                            "type": "string"
-                        }
-                    },
-                    "500": {
-                        "description": "Internal server error",
-                        "schema": {
-                            "type": "string"
-                        }
-                    }
-                }
-            }
-        },
-        "/api/deleteMetricType": {
-            "delete": {
-                "description": "delete metric type with metricTypeID",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "API"
-                ],
-                "summary": "delete page",
-                "parameters": [
-                    {
-                        "type": "string",
-                        "description": "metricTypeID for deleting metric type",
-                        "name": "metricTypeID",
-                        "in": "header",
-                        "required": true
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "delete metric type is successful",
-                        "schema": {
-                            "type": "string"
-                        }
-                    },
-                    "500": {
-                        "description": "Internal server error",
-                        "schema": {
-                            "type": "string"
-                        }
-                    }
-                }
-            }
-        },
-        "/api/deleteRole": {
-            "delete": {
-                "description": "delete role with roleID",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "API"
-                ],
-                "summary": "delete page",
-                "parameters": [
-                    {
-                        "type": "string",
-                        "description": "roleID for deleting role",
-                        "name": "roleID",
-                        "in": "header",
-                        "required": true
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "delete role is successful",
-                        "schema": {
-                            "type": "string"
-                        }
-                    },
-                    "500": {
-                        "description": "Internal server error",
-                        "schema": {
-                            "type": "string"
-                        }
-                    }
-                }
-            }
-        },
-        "/api/deleteUser": {
-            "delete": {
-                "description": "delete user with userID",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "API"
-                ],
-                "summary": "delete page",
-                "parameters": [
-                    {
-                        "type": "string",
-                        "description": "userID for deleting user",
-                        "name": "userID",
-                        "in": "header",
-                        "required": true
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "delete user is successful",
-                        "schema": {
-                            "type": "string"
-                        }
-                    },
-                    "500": {
-                        "description": "Internal server error",
-                        "schema": {
-                            "type": "string"
-                        }
-                    }
-                }
-            }
-        },
-        "/api/getAlert": {
-            "get": {
-                "description": "get alert with alertID",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "API"
-                ],
-                "summary": "get page",
-                "parameters": [
-                    {
-                        "type": "string",
-                        "description": "alertID for getting alert",
-                        "name": "alertID",
-                        "in": "header",
-                        "required": true
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Get alert is successful",
-                        "schema": {
-                            "type": "string"
-                        }
-                    },
-                    "500": {
-                        "description": "Internal server error",
-                        "schema": {
-                            "type": "string"
-                        }
-                    }
-                }
-            }
-        },
-        "/api/getAlertRecipient": {
-            "get": {
-                "description": "get alert recipient with alertRecipientID",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "API"
-                ],
-                "summary": "get page",
-                "parameters": [
-                    {
-                        "type": "string",
-                        "description": "alertRecipientID for getting alert recipient",
-                        "name": "alertRecipientID",
-                        "in": "header",
-                        "required": true
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Get alert recipient is successful",
-                        "schema": {
-                            "type": "string"
-                        }
-                    },
-                    "500": {
-                        "description": "Internal server error",
-                        "schema": {
-                            "type": "string"
-                        }
-                    }
-                }
-            }
-        },
-        "/api/getAlertRecipients": {
+        "/api/alert-recipients": {
             "get": {
                 "description": "get alert recipients",
                 "consumes": [
@@ -324,7 +20,7 @@
                     "application/json"
                 ],
                 "tags": [
-                    "API"
+                    "alert-recipient"
                 ],
                 "summary": "get page",
                 "responses": {
@@ -341,358 +37,7 @@
                         }
                     }
                 }
-            }
-        },
-        "/api/getAlerts": {
-            "get": {
-                "description": "get alerts",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "API"
-                ],
-                "summary": "get page",
-                "responses": {
-                    "200": {
-                        "description": "Get alerts is successful",
-                        "schema": {
-                            "type": "string"
-                        }
-                    },
-                    "500": {
-                        "description": "Internal server error",
-                        "schema": {
-                            "type": "string"
-                        }
-                    }
-                }
-            }
-        },
-        "/api/getMetric": {
-            "get": {
-                "description": "get metric with metricID",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "API"
-                ],
-                "summary": "get page",
-                "parameters": [
-                    {
-                        "type": "string",
-                        "description": "metricID for getting metric",
-                        "name": "metricID",
-                        "in": "header",
-                        "required": true
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Get metric is successful",
-                        "schema": {
-                            "type": "string"
-                        }
-                    },
-                    "500": {
-                        "description": "Internal server error",
-                        "schema": {
-                            "type": "string"
-                        }
-                    }
-                }
-            }
-        },
-        "/api/getMetricType": {
-            "get": {
-                "description": "get metricType with metricTypeID",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "API"
-                ],
-                "summary": "get page",
-                "parameters": [
-                    {
-                        "type": "string",
-                        "description": "metricTypeID for getting metricType",
-                        "name": "metricTypeID",
-                        "in": "header",
-                        "required": true
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Get metricType is successful",
-                        "schema": {
-                            "type": "string"
-                        }
-                    },
-                    "500": {
-                        "description": "Internal server error",
-                        "schema": {
-                            "type": "string"
-                        }
-                    }
-                }
-            }
-        },
-        "/api/getMetricTypes": {
-            "get": {
-                "description": "get metric types",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "API"
-                ],
-                "summary": "get page",
-                "responses": {
-                    "200": {
-                        "description": "Get metric types is successful",
-                        "schema": {
-                            "type": "string"
-                        }
-                    },
-                    "500": {
-                        "description": "Internal server error",
-                        "schema": {
-                            "type": "string"
-                        }
-                    }
-                }
-            }
-        },
-        "/api/getMetrics": {
-            "get": {
-                "description": "get metrics",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "API"
-                ],
-                "summary": "get page",
-                "responses": {
-                    "200": {
-                        "description": "Get metrics is successful",
-                        "schema": {
-                            "type": "string"
-                        }
-                    },
-                    "500": {
-                        "description": "Internal server error",
-                        "schema": {
-                            "type": "string"
-                        }
-                    }
-                }
-            }
-        },
-        "/api/getRole": {
-            "get": {
-                "description": "get role with roleID",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "API"
-                ],
-                "summary": "get page",
-                "parameters": [
-                    {
-                        "type": "string",
-                        "description": "roleID for getting role",
-                        "name": "roleID",
-                        "in": "header",
-                        "required": true
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Get role is successful",
-                        "schema": {
-                            "type": "string"
-                        }
-                    },
-                    "500": {
-                        "description": "Internal server error",
-                        "schema": {
-                            "type": "string"
-                        }
-                    }
-                }
-            }
-        },
-        "/api/getRoles": {
-            "get": {
-                "description": "get roles",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "API"
-                ],
-                "summary": "get page",
-                "responses": {
-                    "200": {
-                        "description": "Get roles is successful",
-                        "schema": {
-                            "type": "string"
-                        }
-                    },
-                    "500": {
-                        "description": "Internal server error",
-                        "schema": {
-                            "type": "string"
-                        }
-                    }
-                }
-            }
-        },
-        "/api/getUser": {
-            "get": {
-                "description": "get user with userID",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "API"
-                ],
-                "summary": "get page",
-                "parameters": [
-                    {
-                        "type": "string",
-                        "description": "userID for getting user",
-                        "name": "userID",
-                        "in": "header",
-                        "required": true
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Get user is successful",
-                        "schema": {
-                            "type": "string"
-                        }
-                    },
-                    "400": {
-                        "description": "Bad request",
-                        "schema": {
-                            "type": "string"
-                        }
-                    },
-                    "500": {
-                        "description": "Internal server error",
-                        "schema": {
-                            "type": "string"
-                        }
-                    }
-                }
-            }
-        },
-        "/api/getUsers": {
-            "get": {
-                "description": "get users",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "API"
-                ],
-                "summary": "get page",
-                "responses": {
-                    "200": {
-                        "description": "Get users is successful",
-                        "schema": {
-                            "type": "string"
-                        }
-                    },
-                    "500": {
-                        "description": "Internal server error",
-                        "schema": {
-                            "type": "string"
-                        }
-                    }
-                }
-            }
-        },
-        "/api/insertAlert": {
-            "post": {
-                "description": "insert alert",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "API"
-                ],
-                "summary": "insert page",
-                "parameters": [
-                    {
-                        "description": "alert_message, severity, metric_id",
-                        "name": "alert",
-                        "in": "body",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/entity.Alert"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Insert alert is successful",
-                        "schema": {
-                            "type": "string"
-                        }
-                    },
-                    "400": {
-                        "description": "Bad request",
-                        "schema": {
-                            "type": "string"
-                        }
-                    },
-                    "500": {
-                        "description": "Internal server error",
-                        "schema": {
-                            "type": "string"
-                        }
-                    }
-                }
-            }
-        },
-        "/api/insertAlertRecipient": {
+            },
             "post": {
                 "description": "insert alert recipient",
                 "consumes": [
@@ -702,7 +47,7 @@
                     "application/json"
                 ],
                 "tags": [
-                    "API"
+                    "alert-recipient"
                 ],
                 "summary": "insert page",
                 "parameters": [
@@ -738,9 +83,9 @@
                 }
             }
         },
-        "/api/insertMetric": {
-            "post": {
-                "description": "insert metric",
+        "/api/alert-recipients/{id}": {
+            "get": {
+                "description": "get alert recipient with alertRecipientID",
                 "consumes": [
                     "application/json"
                 ],
@@ -748,23 +93,63 @@
                     "application/json"
                 ],
                 "tags": [
-                    "API"
+                    "alert-recipient"
                 ],
-                "summary": "insert page",
+                "summary": "get page",
                 "parameters": [
                     {
-                        "description": "metric_name, timestamp, value, metric_type_id",
-                        "name": "metric",
-                        "in": "body",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/entity.Metric"
-                        }
+                        "type": "integer",
+                        "description": "AlertRecipient ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
                     }
                 ],
                 "responses": {
                     "200": {
-                        "description": "Insert metric is successful",
+                        "description": "Get alert recipient is successful",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "description": "delete alert recipient with alertRecipientID",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "alert-recipient"
+                ],
+                "summary": "delete page",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "AlertRecipient ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "delete alert recipient is successful",
                         "schema": {
                             "type": "string"
                         }
@@ -784,7 +169,193 @@
                 }
             }
         },
-        "/api/insertMetricType": {
+        "/api/alerts": {
+            "get": {
+                "description": "get alerts",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "alert"
+                ],
+                "summary": "get page",
+                "responses": {
+                    "200": {
+                        "description": "Get alerts is successful",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "description": "insert alert",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "alert"
+                ],
+                "summary": "insert page",
+                "parameters": [
+                    {
+                        "description": "alert_message, severity, metric_id",
+                        "name": "alert",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/entity.Alert"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Insert alert is successful",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/alerts/{id}": {
+            "get": {
+                "description": "get alert with alertID",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "alert"
+                ],
+                "summary": "get page",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "Alert ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Get alert is successful",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "description": "delete alert",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "alert"
+                ],
+                "summary": "delete page",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "Alert ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "delete alert is successful",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/metric-types": {
+            "get": {
+                "description": "get metric types",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "metric-type"
+                ],
+                "summary": "get page",
+                "responses": {
+                    "200": {
+                        "description": "Get metric types is successful",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            },
             "post": {
                 "description": "insert metric type",
                 "consumes": [
@@ -794,7 +365,7 @@
                     "application/json"
                 ],
                 "tags": [
-                    "API"
+                    "metric-type"
                 ],
                 "summary": "insert page",
                 "parameters": [
@@ -830,7 +401,323 @@
                 }
             }
         },
-        "/api/insertRole": {
+        "/api/metric-types/{id}": {
+            "get": {
+                "description": "get metricType with metricTypeID",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "metric-type"
+                ],
+                "summary": "get page",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "MetricType ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Get metricType is successful",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "description": "delete metric type with metricTypeID",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "metric-type"
+                ],
+                "summary": "delete page",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "MetricType ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "delete metric type is successful",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/metrics": {
+            "get": {
+                "description": "get metrics",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "metric"
+                ],
+                "summary": "get page",
+                "responses": {
+                    "200": {
+                        "description": "Get metrics is successful",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            },
+            "put": {
+                "description": "update value with metricID",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "metric"
+                ],
+                "summary": "update page",
+                "parameters": [
+                    {
+                        "description": "metric_id, value",
+                        "name": "metric",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/entity.Metric"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Update metric is successful",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "description": "insert metric",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "metric"
+                ],
+                "summary": "insert page",
+                "parameters": [
+                    {
+                        "description": "metric_name, timestamp, value, metric_type_id",
+                        "name": "metric",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/entity.Metric"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Insert metric is successful",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/metrics/{id}": {
+            "get": {
+                "description": "get metric with metricID",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "metric"
+                ],
+                "summary": "get page",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "Metric ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Get metric is successful",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "description": "delete metric with metricID",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "metric"
+                ],
+                "summary": "delete page",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "Metric ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "delete metric is successful",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/roles": {
+            "get": {
+                "description": "get roles",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "role"
+                ],
+                "summary": "get page",
+                "responses": {
+                    "200": {
+                        "description": "Get roles is successful",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            },
             "post": {
                 "description": "insert role",
                 "consumes": [
@@ -840,7 +727,7 @@
                     "application/json"
                 ],
                 "tags": [
-                    "API"
+                    "role"
                 ],
                 "summary": "insert page",
                 "parameters": [
@@ -876,7 +763,164 @@
                 }
             }
         },
-        "/api/insertUser": {
+        "/api/roles/{id}": {
+            "get": {
+                "description": "get role with roleID",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "role"
+                ],
+                "summary": "get page",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "Role ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Get role is successful",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "description": "delete role with roleID",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "role"
+                ],
+                "summary": "delete page",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "Role ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "delete role is successful",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/users": {
+            "get": {
+                "description": "get users",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "user"
+                ],
+                "summary": "get page",
+                "responses": {
+                    "200": {
+                        "description": "Get users is successful",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            },
+            "put": {
+                "description": "update email with userID",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "user"
+                ],
+                "summary": "update page",
+                "parameters": [
+                    {
+                        "description": "user_id, email",
+                        "name": "user",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/entity.User"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Update user is successful",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            },
             "post": {
                 "description": "insert user",
                 "consumes": [
@@ -886,7 +930,7 @@
                     "application/json"
                 ],
                 "tags": [
-                    "API"
+                    "user"
                 ],
                 "summary": "insert page",
                 "parameters": [
@@ -916,9 +960,9 @@
                 }
             }
         },
-        "/api/updateMetric": {
-            "put": {
-                "description": "update value with metricID",
+        "/api/users/{id}": {
+            "get": {
+                "description": "get user with userID",
                 "consumes": [
                     "application/json"
                 ],
@@ -926,23 +970,21 @@
                     "application/json"
                 ],
                 "tags": [
-                    "API"
+                    "user"
                 ],
-                "summary": "update page",
+                "summary": "get page",
                 "parameters": [
                     {
-                        "description": "metricID, value",
-                        "name": "metric",
-                        "in": "body",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/entity.Metric"
-                        }
+                        "type": "integer",
+                        "description": "User ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
                     }
                 ],
                 "responses": {
                     "200": {
-                        "description": "Update metric is successful",
+                        "description": "Get user is successful",
                         "schema": {
                             "type": "string"
                         }
@@ -960,11 +1002,9 @@
                         }
                     }
                 }
-            }
-        },
-        "/api/updateUser": {
-            "put": {
-                "description": "update email with userID",
+            },
+            "delete": {
+                "description": "delete user with userID",
                 "consumes": [
                     "application/json"
                 ],
@@ -972,23 +1012,21 @@
                     "application/json"
                 ],
                 "tags": [
-                    "API"
+                    "user"
                 ],
-                "summary": "update page",
+                "summary": "delete page",
                 "parameters": [
                     {
-                        "description": "userID, email",
-                        "name": "user",
-                        "in": "body",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/entity.User"
-                        }
+                        "type": "integer",
+                        "description": "User ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
                     }
                 ],
                 "responses": {
                     "200": {
-                        "description": "Update user is successful",
+                        "description": "delete user is successful",
                         "schema": {
                             "type": "string"
                         }
@@ -1050,6 +1088,13 @@
         },
         "entity.Metric": {
             "type": "object",
+            "required": [
+                "metric_id",
+                "metric_name",
+                "metric_type_id",
+                "timestamp",
+                "value"
+            ],
             "properties": {
                 "metric_id": {
                     "type": "integer",
@@ -1065,7 +1110,7 @@
                 },
                 "timestamp": {
                     "type": "string",
-                    "example": "1993-12-01 10:03:44.000 +0300"
+                    "example": "2006-01-02T15:04:05Z"
                 },
                 "value": {
                     "type": "number",

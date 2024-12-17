@@ -3,6 +3,7 @@ package controller
 import (
 	"SystemMetric/internal/entity"
 	"encoding/json"
+	"github.com/gorilla/mux"
 	"log/slog"
 	"net/http"
 	"strconv"
@@ -11,12 +12,12 @@ import (
 // APIGetMetricTypesHandler страница получения всех типов метрик
 // @Summary get page
 // @Description get metric types
-// @Tags API
+// @Tags metric-type
 // @Accept json
 // @Produce json
 // @Success 200 {string} string "Get metric types is successful"
 // @Failure 500 {string} string "Internal server error"
-// @Router /api/getMetricTypes [get]
+// @Router /api/metric-types [get]
 func (s *Server) APIGetMetricTypesHandler(w http.ResponseWriter, r *http.Request) {
 	metricTypes, err := s.u.GetMetricTypes()
 	if err != nil {
@@ -33,15 +34,24 @@ func (s *Server) APIGetMetricTypesHandler(w http.ResponseWriter, r *http.Request
 // APIGetMetricTypeHandler страница получения типа метрики по metricTypeID
 // @Summary get page
 // @Description get metricType with metricTypeID
-// @Tags API
+// @Tags metric-type
 // @Accept json
 // @Produce json
-// @Param metricTypeID header string true "metricTypeID for getting metricType"
+// @Param id path int true "MetricType ID"
 // @Success 200 {string} string "Get metricType is successful"
+// @Failure 400 {string} string "Bad request"
 // @Failure 500 {string} string "Internal server error"
-// @Router /api/getMetricType [get]
+// @Router /api/metric-types/{id} [get]
 func (s *Server) APIGetMetricTypeHandler(w http.ResponseWriter, r *http.Request) {
-	metricTypeID, _ := strconv.Atoi(r.Header.Get("metricTypeID"))
+	vars := mux.Vars(r)
+	idString := vars["id"] // Извлекаем ID из пути
+	metricTypeID, err := strconv.Atoi(idString)
+	if err != nil {
+		http.Error(w, "get metricType is impossible", http.StatusBadRequest)
+		s.logger.Error("controller APIGetMetricTypeHandler strconv.Atoi",
+			slog.Any("error", err), slog.Int("status", http.StatusBadRequest))
+		return
+	}
 	metricType, err := s.u.GetMetricType(int64(metricTypeID))
 	if err != nil {
 		http.Error(w, "get metricType is impossible", http.StatusInternalServerError)
@@ -57,14 +67,14 @@ func (s *Server) APIGetMetricTypeHandler(w http.ResponseWriter, r *http.Request)
 // APIInsertMetricTypeHandler страница добавления типа метрики
 // @Summary insert page
 // @Description insert metric type
-// @Tags API
+// @Tags metric-type
 // @Accept json
 // @Produce json
 // @Param metric_type body entity.MetricType true "type_name"
 // @Success 200 {string} string "Insert metric type is successful"
 // @Failure 400 {string} string "Bad request"
 // @Failure 500 {string} string "Internal server error"
-// @Router /api/insertMetricType [post]
+// @Router /api/metric-types [post]
 func (s *Server) APIInsertMetricTypeHandler(w http.ResponseWriter, r *http.Request) {
 	var metricType entity.MetricType
 	if err := json.NewDecoder(r.Body).Decode(&metricType); err != nil {
@@ -88,16 +98,25 @@ func (s *Server) APIInsertMetricTypeHandler(w http.ResponseWriter, r *http.Reque
 // APIDeleteMetricTypeHandler страница удаления типа метрики по metricTypeID
 // @Summary delete page
 // @Description delete metric type with metricTypeID
-// @Tags API
+// @Tags metric-type
 // @Accept json
 // @Produce json
-// @Param metricTypeID header string true "metricTypeID for deleting metric type"
+// @Param id path int true "MetricType ID"
 // @Success 200 {string} string "delete metric type is successful"
+// @Failure 400 {string} string "Bad request"
 // @Failure 500 {string} string "Internal server error"
-// @Router /api/deleteMetricType [delete]
+// @Router /api/metric-types/{id} [delete]
 func (s *Server) APIDeleteMetricTypeHandler(w http.ResponseWriter, r *http.Request) {
-	metricTypeID, _ := strconv.Atoi(r.Header.Get("metricTypeID"))
-	err := s.u.DeleteMetricType(int64(metricTypeID))
+	vars := mux.Vars(r)
+	idString := vars["id"] // Извлекаем ID из пути
+	metricTypeID, err := strconv.Atoi(idString)
+	if err != nil {
+		http.Error(w, "delete metricType is impossible", http.StatusBadRequest)
+		s.logger.Error("controller APIDeleteMetricTypeHandler strconv.Atoi",
+			slog.Any("error", err), slog.Int("status", http.StatusBadRequest))
+		return
+	}
+	err = s.u.DeleteMetricType(int64(metricTypeID))
 	if err != nil {
 		http.Error(w, "delete metricType is impossible", http.StatusInternalServerError)
 		s.logger.Error("controller APIDeleteMetricTypeHandler s.u.DeleteMetricType",

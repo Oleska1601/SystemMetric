@@ -3,6 +3,8 @@ package controller
 import (
 	"SystemMetric/internal/entity"
 	"encoding/json"
+	"github.com/go-playground/validator/v10"
+	"github.com/gorilla/mux"
 	"log/slog"
 	"net/http"
 	"strconv"
@@ -11,12 +13,12 @@ import (
 // APIGetUsersHandler страница получения всех пользователей
 // @Summary get page
 // @Description get users
-// @Tags API
+// @Tags user
 // @Accept json
 // @Produce json
 // @Success 200 {string} string "Get users is successful"
 // @Failure 500 {string} string "Internal server error"
-// @Router /api/getUsers [get]
+// @Router /api/users [get]
 func (s *Server) APIGetUsersHandler(w http.ResponseWriter, r *http.Request) {
 	users, err := s.u.GetUsers()
 	if err != nil {
@@ -33,16 +35,24 @@ func (s *Server) APIGetUsersHandler(w http.ResponseWriter, r *http.Request) {
 // APIGetUserHandler страница получения user по userID
 // @Summary get page
 // @Description get user with userID
-// @Tags API
+// @Tags user
 // @Accept json
 // @Produce json
-// @Param userID header string true "userID for getting user"
+// @Param id path int true "User ID"
 // @Success 200 {string} string "Get user is successful"
 // @Failure 400 {string} string "Bad request"
 // @Failure 500 {string} string "Internal server error"
-// @Router /api/getUser [get]
+// @Router /api/users/{id} [get]
 func (s *Server) APIGetUserHandler(w http.ResponseWriter, r *http.Request) {
-	userID, _ := strconv.Atoi(r.Header.Get("userID"))
+	vars := mux.Vars(r)
+	idString := vars["id"] // Извлекаем ID из пути
+	userID, err := strconv.Atoi(idString)
+	if err != nil {
+		http.Error(w, "get user is impossible", http.StatusBadRequest)
+		s.logger.Error("controller APIGetUserHandler strconv.Atoi",
+			slog.Any("error", err), slog.Int("status", http.StatusBadRequest))
+		return
+	}
 	user, err := s.u.GetUser(int64(userID))
 	if err != nil {
 		http.Error(w, "get user is impossible", http.StatusInternalServerError)
@@ -58,13 +68,13 @@ func (s *Server) APIGetUserHandler(w http.ResponseWriter, r *http.Request) {
 // APIInsertUserHandler страница добавления пользователя
 // @Summary insert page
 // @Description insert user
-// @Tags API
+// @Tags user
 // @Accept json
 // @Produce json
 // @Param user body entity.User true "username, email"
 // @Success 200 {string} string "Insert user is successful"
 // @Failure 500 {string} string "Internal server error"
-// @Router /api/insertUser [post]
+// @Router /api/users [post]
 func (s *Server) APIInsertUserHandler(w http.ResponseWriter, r *http.Request) {
 	var user entity.User
 	if err := json.NewDecoder(r.Body).Decode(&user); err != nil {
@@ -88,16 +98,25 @@ func (s *Server) APIInsertUserHandler(w http.ResponseWriter, r *http.Request) {
 // APIDeleteUserHandler страница удаления пользователя по userID
 // @Summary delete page
 // @Description delete user with userID
-// @Tags API
+// @Tags user
 // @Accept json
 // @Produce json
-// @Param userID header string true "userID for deleting user"
+// @Param id path int true "User ID"
 // @Success 200 {string} string "delete user is successful"
+// @Failure 400 {string} string "Bad request"
 // @Failure 500 {string} string "Internal server error"
-// @Router /api/deleteUser [delete]
+// @Router /api/users/{id} [delete]
 func (s *Server) APIDeleteUserHandler(w http.ResponseWriter, r *http.Request) {
-	userID, _ := strconv.Atoi(r.Header.Get("userID"))
-	err := s.u.DeleteUser(int64(userID))
+	vars := mux.Vars(r)
+	idString := vars["id"] // Извлекаем ID из пути
+	userID, err := strconv.Atoi(idString)
+	if err != nil {
+		http.Error(w, "delete user is impossible", http.StatusBadRequest)
+		s.logger.Error("controller APIDeleteUserHandler strconv.Atoi",
+			slog.Any("error", err), slog.Int("status", http.StatusBadRequest))
+		return
+	}
+	err = s.u.DeleteUser(int64(userID))
 	if err != nil {
 		http.Error(w, "delete user is impossible", http.StatusInternalServerError)
 		s.logger.Error("controller APIDeleteUserHandler s.u.DeleteUser",
@@ -111,19 +130,26 @@ func (s *Server) APIDeleteUserHandler(w http.ResponseWriter, r *http.Request) {
 // APIUpdateUserHandler страница обновления почты пользователя
 // @Summary update page
 // @Description update email with userID
-// @Tags API
+// @Tags user
 // @Accept json
 // @Produce json
-// @Param user body entity.User true "userID, email"
+// @Param user body entity.User true "user_id, email"
 // @Success 200 {string} string "Update user is successful"
 // @Failure 400 {string} string "Bad request"
 // @Failure 500 {string} string "Internal server error"
-// @Router /api/updateUser [put]
+// @Router /api/users [put]
 func (s *Server) APIUpdateUserHandler(w http.ResponseWriter, r *http.Request) {
 	var user entity.User
 	if err := json.NewDecoder(r.Body).Decode(&user); err != nil {
 		http.Error(w, "update user is impossible", http.StatusBadRequest)
 		s.logger.Error("controller APIUpdateUserHandler json.NewDecoder(r.Body).Decode",
+			slog.Any("error", err), slog.Int("status", http.StatusBadRequest))
+		return
+	}
+	validate := validator.New()
+	if err := validate.Struct(user); err != nil {
+		http.Error(w, "update user is impossible", http.StatusBadRequest)
+		s.logger.Error("controller APIUpdateUserHandler validate.Struct",
 			slog.Any("error", err), slog.Int("status", http.StatusBadRequest))
 		return
 	}

@@ -3,6 +3,7 @@ package controller
 import (
 	"SystemMetric/internal/entity"
 	"encoding/json"
+	"github.com/gorilla/mux"
 	"log/slog"
 	"net/http"
 	"strconv"
@@ -11,12 +12,12 @@ import (
 // APIGetRolesHandler страница получения всех ролей
 // @Summary get page
 // @Description get roles
-// @Tags API
+// @Tags role
 // @Accept json
 // @Produce json
 // @Success 200 {string} string "Get roles is successful"
 // @Failure 500 {string} string "Internal server error"
-// @Router /api/getRoles [get]
+// @Router /api/roles [get]
 func (s *Server) APIGetRolesHandler(w http.ResponseWriter, r *http.Request) {
 	roles, err := s.u.GetRoles()
 	if err != nil {
@@ -33,15 +34,24 @@ func (s *Server) APIGetRolesHandler(w http.ResponseWriter, r *http.Request) {
 // APIGetRoleHandler страница получения роли по roleID
 // @Summary get page
 // @Description get role with roleID
-// @Tags API
+// @Tags role
 // @Accept json
 // @Produce json
-// @Param roleID header string true "roleID for getting role"
+// @Param id path int true "Role ID"
 // @Success 200 {string} string "Get role is successful"
+// @Failure 400 {string} string "Bad request"
 // @Failure 500 {string} string "Internal server error"
-// @Router /api/getRole [get]
+// @Router /api/roles/{id} [get]
 func (s *Server) APIGetRoleHandler(w http.ResponseWriter, r *http.Request) {
-	roleID, _ := strconv.Atoi(r.Header.Get("roleID"))
+	vars := mux.Vars(r)
+	idString := vars["id"] // Извлекаем ID из пути
+	roleID, err := strconv.Atoi(idString)
+	if err != nil {
+		http.Error(w, "get role is impossible", http.StatusBadRequest)
+		s.logger.Error("controller APIGetRoleHandler strconv.Atoi",
+			slog.Any("error", err), slog.Int("status", http.StatusBadRequest))
+		return
+	}
 	role, err := s.u.GetRole(int64(roleID))
 	if err != nil {
 		http.Error(w, "get role is impossible", http.StatusInternalServerError)
@@ -57,14 +67,14 @@ func (s *Server) APIGetRoleHandler(w http.ResponseWriter, r *http.Request) {
 // APIInsertRoleHandler страница добавления роли
 // @Summary insert page
 // @Description insert role
-// @Tags API
+// @Tags role
 // @Accept json
 // @Produce json
 // @Param role body entity.Role true "role_name"
 // @Success 200 {string} string "Insert role is successful"
 // @Failure 400 {string} string "Bad request"
 // @Failure 500 {string} string "Internal server error"
-// @Router /api/insertRole [post]
+// @Router /api/roles [post]
 func (s *Server) APIInsertRoleHandler(w http.ResponseWriter, r *http.Request) {
 	var role entity.Role
 	if err := json.NewDecoder(r.Body).Decode(&role); err != nil {
@@ -88,16 +98,25 @@ func (s *Server) APIInsertRoleHandler(w http.ResponseWriter, r *http.Request) {
 // APIDeleteRoleHandler страница удаления роли по roleID
 // @Summary delete page
 // @Description delete role with roleID
-// @Tags API
+// @Tags role
 // @Accept json
 // @Produce json
-// @Param roleID header string true "roleID for deleting role"
+// @Param id path int true "Role ID"
 // @Success 200 {string} string "delete role is successful"
+// @Failure 400 {string} string "Bad request"
 // @Failure 500 {string} string "Internal server error"
-// @Router /api/deleteRole [delete]
+// @Router /api/roles/{id} [delete]
 func (s *Server) APIDeleteRoleHandler(w http.ResponseWriter, r *http.Request) {
-	roleID, _ := strconv.Atoi(r.Header.Get("roleID"))
-	err := s.u.DeleteRole(int64(roleID))
+	vars := mux.Vars(r)
+	idString := vars["id"] // Извлекаем ID из пути
+	roleID, err := strconv.Atoi(idString)
+	if err != nil {
+		http.Error(w, "delete role is impossible", http.StatusBadRequest)
+		s.logger.Error("controller APIDeleteRoleHandler strconv.Atoi",
+			slog.Any("error", err), slog.Int("status", http.StatusBadRequest))
+		return
+	}
+	err = s.u.DeleteRole(int64(roleID))
 	if err != nil {
 		http.Error(w, "delete role is impossible", http.StatusInternalServerError)
 		s.logger.Error("controller APIDeleteRoleHandler s.u.DeleteRole",

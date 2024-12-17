@@ -3,6 +3,7 @@ package controller
 import (
 	"SystemMetric/internal/entity"
 	"encoding/json"
+	"github.com/gorilla/mux"
 	"log/slog"
 	"net/http"
 	"strconv"
@@ -11,12 +12,12 @@ import (
 // APIGetAlertsHandler страница получения всех алертов
 // @Summary get page
 // @Description get alerts
-// @Tags API
+// @Tags alert
 // @Accept json
 // @Produce json
 // @Success 200 {string} string "Get alerts is successful"
 // @Failure 500 {string} string "Internal server error"
-// @Router /api/getAlerts [get]
+// @Router /api/alerts [get]
 func (s *Server) APIGetAlertsHandler(w http.ResponseWriter, r *http.Request) {
 	alerts, err := s.u.GetAlerts()
 	if err != nil {
@@ -33,15 +34,24 @@ func (s *Server) APIGetAlertsHandler(w http.ResponseWriter, r *http.Request) {
 // APIGetAlertHandler страница получения алерта по alertID
 // @Summary get page
 // @Description get alert with alertID
-// @Tags API
+// @Tags alert
 // @Accept json
 // @Produce json
-// @Param alertID header string true "alertID for getting alert"
+// @Param id path int true "Alert ID"
 // @Success 200 {string} string "Get alert is successful"
+// @Failure 400 {string} string "Bad request"
 // @Failure 500 {string} string "Internal server error"
-// @Router /api/getAlert [get]
+// @Router /api/alerts/{id} [get]
 func (s *Server) APIGetAlertHandler(w http.ResponseWriter, r *http.Request) {
-	alertID, _ := strconv.Atoi(r.Header.Get("alertID"))
+	vars := mux.Vars(r)
+	idString := vars["id"] // Извлекаем ID из пути
+	alertID, err := strconv.Atoi(idString)
+	if err != nil {
+		http.Error(w, "get alert is impossible", http.StatusBadRequest)
+		s.logger.Error("controller APIGetAlertHandler strconv.Atoi",
+			slog.Any("error", err), slog.Int("status", http.StatusBadRequest))
+		return
+	}
 	alert, err := s.u.GetAlert(int64(alertID))
 	if err != nil {
 		http.Error(w, "get alert is impossible", http.StatusInternalServerError)
@@ -49,6 +59,7 @@ func (s *Server) APIGetAlertHandler(w http.ResponseWriter, r *http.Request) {
 			slog.Any("error", err), slog.Int("status", http.StatusInternalServerError))
 		return
 	}
+
 	w.WriteHeader(http.StatusOK)
 	s.logger.Info("controller APIGetAlertHandler", slog.Int("status", http.StatusOK))
 	json.NewEncoder(w).Encode(alert)
@@ -57,14 +68,14 @@ func (s *Server) APIGetAlertHandler(w http.ResponseWriter, r *http.Request) {
 // APIInsertAlertHandler страница добавления алерта
 // @Summary insert page
 // @Description insert alert
-// @Tags API
+// @Tags alert
 // @Accept json
 // @Produce json
 // @Param alert body entity.Alert true "alert_message, severity, metric_id"
 // @Success 200 {string} string "Insert alert is successful"
 // @Failure 400 {string} string "Bad request"
 // @Failure 500 {string} string "Internal server error"
-// @Router /api/insertAlert [post]
+// @Router /api/alerts [post]
 func (s *Server) APIInsertAlertHandler(w http.ResponseWriter, r *http.Request) {
 	var alert entity.Alert
 	if err := json.NewDecoder(r.Body).Decode(&alert); err != nil {
@@ -88,16 +99,25 @@ func (s *Server) APIInsertAlertHandler(w http.ResponseWriter, r *http.Request) {
 // APIDeleteAlertHandler страница удаления алерта по alertID
 // @Summary delete page
 // @Description delete alert
-// @Tags API
+// @Tags alert
 // @Accept json
 // @Produce json
-// @Param alertID header string true "alertID for deleting alert"
+// @Param id path int true "Alert ID"
 // @Success 200 {string} string "delete alert is successful"
+// @Failure 400 {string} string "Bad request"
 // @Failure 500 {string} string "Internal server error"
-// @Router /api/deleteAlert [delete]
+// @Router /api/alerts/{id} [delete]
 func (s *Server) APIDeleteAlertHandler(w http.ResponseWriter, r *http.Request) {
-	alertID, _ := strconv.Atoi(r.Header.Get("alertID"))
-	err := s.u.DeleteAlert(int64(alertID))
+	vars := mux.Vars(r)
+	idString := vars["id"] // Извлекаем ID из пути
+	alertID, err := strconv.Atoi(idString)
+	if err != nil {
+		http.Error(w, "delete alert is impossible", http.StatusInternalServerError)
+		s.logger.Error("controller APIDeleteAlertHandler strconv.Atoi",
+			slog.Any("error", err), slog.Int("status", http.StatusInternalServerError))
+		return
+	}
+	err = s.u.DeleteAlert(int64(alertID))
 	if err != nil {
 		http.Error(w, "delete alert is impossible", http.StatusInternalServerError)
 		s.logger.Error("controller APIDeleteAlertHandler s.u.DeleteAlert",
